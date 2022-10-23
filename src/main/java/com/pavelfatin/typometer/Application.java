@@ -24,6 +24,7 @@ import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
 public class Application {
     private static final String DEFAULT_TITLE = "Untitled";
+
     private static final Parameters DEFAULT_PARAMETERS = new Parameters(200, 150, false, 50, 1000);
 
     public static void main(String[] args) throws Exception {

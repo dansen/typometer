@@ -420,6 +420,7 @@ public class MainFrame extends JFrame {
         }
     }
 
+    // 开始 benchmark
     private void doBenchmark(ProgressDialog dialog) {
         final Parameters parameters = getParameters();
         final ScreenAccessor accessor = ScreenAccessor.create(myNative.isSelected());

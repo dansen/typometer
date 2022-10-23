@@ -1,5 +1,7 @@
 # Typometer README
 
+使用jdk 9.0支持4k屏幕
+
 Typometer is a tool to measure and analyze visual latency of text / code editors.
 
 Editor latency is delay between an input event and a corresponding screen update, in particular case – delay between keystroke and character appearance. While there are many kinds of delays (caret movement, line editing, etc.), typing latency is a major predictor of editor usability.
