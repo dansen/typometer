@@ -88,6 +88,7 @@ class BenchmarkImpl implements Benchmark {
 
         List<Integer> delays = parameters.getDelays();
 
+        // 总字数
         int total = parameters.getCount();
 
         int offset = 0;
@@ -130,11 +131,14 @@ class BenchmarkImpl implements Benchmark {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
         listener.accept("Inserting a reference pattern...");
+        // 获取屏幕图片
         BufferedImage imageBefore = createScreenCapture(robot, screenSize);
+        // 插入文本 .....
         type(robot, CHARACTER, PATTERN_LENGTH);
         sleep(PATTERN_INSERTION_DELAY);
 
         listener.accept("Detecting screen metrics...");
+        // 获取新的图片
         BufferedImage imageAfter = createScreenCapture(robot, screenSize);
         Optional<Metrics> metricsOption = Metrics.detect(imageBefore, imageAfter, PATTERN_LENGTH);
 
@@ -178,7 +182,7 @@ class BenchmarkImpl implements Benchmark {
 
         for (int delay : delays) {
             if (!accessor.getPixelColor((int) round(x), y).equals(metrics.getBackground())) {
-                throw new BenchmarkException("Previously undetected block cursor found.");
+                //throw new BenchmarkException("Previously undetected block cursor found.");
             }
 
             robot.keyPress(CHARACTER);

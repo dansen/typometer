@@ -38,8 +38,8 @@ class MetricsDetector {
 
     // Sequence detection
     private static final int MIN_STEP = 4;
-    private static final double MAX_SIZE_DEVIATION = 2.0D;
-    private static final double MAX_DISTANCE_DEVIATION = 2.0D;
+    private static final double MAX_SIZE_DEVIATION = 4.0D;
+    private static final double MAX_DISTANCE_DEVIATION = 4.0D;
 
 
     private MetricsDetector() {
@@ -53,9 +53,9 @@ class MetricsDetector {
         GreyscaleImage greyscaleImage1 = GreyscaleImage.createFrom(image1);
         GreyscaleImage greyscaleImage2 = GreyscaleImage.createFrom(image2);
 
-        return or(newSequenceIn(greyscaleImage1, greyscaleImage2, inverted, count, queue),
-            newSequenceIn(greyscaleImage1, greyscaleImage2, !inverted, count, queue))
-                .map(rectangles -> metricsFrom(rectangles, image2, count + 3));
+        Optional<List<Rectangle>> a = newSequenceIn(greyscaleImage1, greyscaleImage2, inverted, count, queue);
+        Optional<List<Rectangle>> b = newSequenceIn(greyscaleImage1, greyscaleImage2, !inverted, count, queue);
+        return or(a,b).map(rectangles -> metricsFrom(rectangles, image2, count + 3));
     }
 
     private static <T> Optional<T> or(Optional<T> o1, Optional<T> o2) {
